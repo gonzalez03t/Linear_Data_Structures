@@ -1,0 +1,7 @@
+C:\Users\Jesus\source\repos\C#_Projects\Linear_Data_Structures\Linear_Data_Structures\bin\Debug\Linear_Data_Structures.exe.config
+C:\Users\Jesus\source\repos\C#_Projects\Linear_Data_Structures\Linear_Data_Structures\bin\Debug\Linear_Data_Structures.exe
+C:\Users\Jesus\source\repos\C#_Projects\Linear_Data_Structures\Linear_Data_Structures\bin\Debug\Linear_Data_Structures.pdb
+C:\Users\Jesus\source\repos\C#_Projects\Linear_Data_Structures\Linear_Data_Structures\obj\Debug\Linear_Data_Structures.csprojAssemblyReference.cache
+C:\Users\Jesus\source\repos\C#_Projects\Linear_Data_Structures\Linear_Data_Structures\obj\Debug\Linear_Data_Structures.csproj.CoreCompileInputs.cache
+C:\Users\Jesus\source\repos\C#_Projects\Linear_Data_Structures\Linear_Data_Structures\obj\Debug\Linear_Data_Structures.exe
+C:\Users\Jesus\source\repos\C#_Projects\Linear_Data_Structures\Linear_Data_Structures\obj\Debug\Linear_Data_Structures.pdb
