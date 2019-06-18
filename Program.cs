@@ -7,6 +7,133 @@ using System.Collections;
 
 namespace Linear_Data_Structures
 {
+    public class Node<T>
+    {
+        public T Data { get; set; }
+        public Node<T> Next { get; set; }
+        public Node<T> Previous { get; set; }
+
+        public Node(T value) //Constructor
+        {
+            Data = value;
+        }
+    }
+
+    public class SinglyLinkedList<T> : System.Collections.Generic.ICollection<T>
+    {
+        #region Initialize LinkedList
+        public class Node
+        {
+            public T Data { get; set; }
+            public Node<T> Next { get; set; }
+            public Node<T> Previous { get; set; }
+
+            public Node(T value) //Constructor
+            {
+                Data = value;
+            }
+        }
+        public Node<T> Head { get; private set; }
+        public Node<T> Tail { get; private set; }
+        public int Count { get; private set; }
+
+        public bool IsReadOnly => throw new NotImplementedException();
+        #endregion
+
+        #region Add
+        public void AddFirst(T value) //Add specified value to the start of the linked list
+        {
+            AddFirst(new Node<T>(value)); //1- Create new node
+        }
+        public void AddFirst(Node<T> node) //Add specified node to the start of the linked list
+        {
+            Node<T> temp = Head; //2- Point temp to head
+            Head = node; //3- Point head to new node
+            Head.Next = temp; //4-Point head.next to temp
+            Count++;
+            
+            if (Count == 1)
+            {
+                Tail = Head; //5- If list is empty then tail and head are the same
+            }
+            else
+            {
+                temp.Previous = Head; //5- point temp.previous to head
+            }
+        }
+        public void AddLast(T value) //Add specific value to the end of the linked list
+        {
+            AddLast(new Node<T>(value)); //1- Create new node
+        }
+        public void AddLast(Node<T> node) //Add specific node to the end of the linked list
+        {
+            Node<T> temp = Tail; //2- point temp to tail
+            Tail = node; //3- Point tail to new node
+            Tail.Previous = temp; //4- Point tail.previous to temp
+            Count++; 
+
+            if (Count == 1)
+            {
+                Head = Tail; //5- If list is empty then head and tail are the same
+            }
+            else
+            {
+                temp.Next = Tail; //5- Point temp.next to tail
+            }
+        }
+        #endregion
+
+        #region Print
+        public void PrintLinkedList()
+        {
+            Node<T> temp = Head;
+
+            while(temp != null)
+            {
+                Console.Write(temp.Data + " ");
+                temp = temp.Next;
+            }
+        }
+        #endregion
+
+        #region Pending Methods
+        public void Add(T item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Contains(T item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Remove(T item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+
     class Program
     {
         public static void StringClass()
@@ -155,8 +282,18 @@ namespace Linear_Data_Structures
             //ArrayClass();
             //ListClass();
             //ArrayListClass();
-            BuiltInLinkedListClass();
+            //BuiltInLinkedListClass();
 
+            SinglyLinkedList<int> myList = new SinglyLinkedList<int>();
+            myList.AddFirst(5);
+            myList.AddFirst(4);
+            myList.AddFirst(3);
+            myList.AddLast(6);
+            myList.AddLast(7);
+            myList.AddLast(8);
+
+            myList.PrintLinkedList();
+            Console.ReadLine();
         }
     }
 }
