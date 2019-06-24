@@ -7,34 +7,22 @@ using System.Collections;
 
 namespace Linear_Data_Structures
 {
-    public class Node<T>
-    {
-        public T Data { get; set; }
-        public Node<T> Next { get; set; }
-        public Node<T> Previous { get; set; }
-
-        public Node(T value) //Constructor
-        {
-            Data = value;
-        }
-    }
-
     public class SinglyLinkedList<T> : System.Collections.Generic.ICollection<T>
     {
         #region Initialize LinkedList
         public class Node
         {
             public T Data { get; set; }
-            public Node<T> Next { get; set; }
-            public Node<T> Previous { get; set; }
+            public Node Next { get; set; }
+            public Node Previous { get; set; }
 
             public Node(T value) //Constructor
             {
                 Data = value;
             }
         }
-        public Node<T> Head { get; private set; }
-        public Node<T> Tail { get; private set; }
+        public Node Head { get; private set; }
+        public Node Tail { get; private set; }
         public int Count { get; private set; }
 
         public bool IsReadOnly => throw new NotImplementedException();
@@ -43,11 +31,11 @@ namespace Linear_Data_Structures
         #region Add
         public void AddFirst(T value) //Add specified value to the start of the linked list
         {
-            AddFirst(new Node<T>(value)); //1- Create new node
+            AddFirst(new Node(value)); //1- Create new node
         }
-        public void AddFirst(Node<T> node) //Add specified node to the start of the linked list
+        public void AddFirst(Node node) //Add specified node to the start of the linked list
         {
-            Node<T> temp = Head; //2- Point temp to head
+            Node temp = Head; //2- Point temp to head
             Head = node; //3- Point head to new node
             Head.Next = temp; //4-Point head.next to temp
             Count++;
@@ -63,11 +51,11 @@ namespace Linear_Data_Structures
         }
         public void AddLast(T value) //Add specific value to the end of the linked list
         {
-            AddLast(new Node<T>(value)); //1- Create new node
+            AddLast(new Node(value)); //1- Create new node
         }
-        public void AddLast(Node<T> node) //Add specific node to the end of the linked list
+        public void AddLast(Node node) //Add specific node to the end of the linked list
         {
-            Node<T> temp = Tail; //2- point temp to tail
+            Node temp = Tail; //2- point temp to tail
             Tail = node; //3- Point tail to new node
             Tail.Previous = temp; //4- Point tail.previous to temp
             Count++; 
@@ -83,10 +71,57 @@ namespace Linear_Data_Structures
         }
         #endregion
 
+        #region Remove
+        public void RemoveFirst()
+        {
+            if (Count != 0)
+            {
+                Head = Head.Next;
+                Count--;
+
+                if (Count == 0)
+                {
+                    Tail = null;
+                }
+            }
+        }
+        public bool Remove(T item)
+        {
+            Node prev = null;
+            Node current = Head;
+
+            while (current != null)
+            {
+                if (current.Data.Equals(item))
+                {
+                    if (prev != null) //It's a node in the middle or end
+                    {
+                        prev.Next = current.Next; //node to remove is the middle or last
+                        
+                        if (current.Next == null)
+                        {
+                            Tail = prev;
+                        }
+                        Count--;
+                    }
+                    else //Single node or node to remove is the first one
+                    {
+                        RemoveFirst();
+                    }
+                }
+
+                prev = current;
+                current = current.Next;
+            }
+
+            return false; //Emplty list - do nothing
+        }
+        #endregion
+
         #region Print
         public void PrintLinkedList()
         {
-            Node<T> temp = Head;
+            Node temp = Head;
 
             while(temp != null)
             {
@@ -113,11 +148,6 @@ namespace Linear_Data_Structures
         }
 
         public void CopyTo(T[] array, int arrayIndex)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Remove(T item)
         {
             throw new NotImplementedException();
         }
@@ -292,7 +322,21 @@ namespace Linear_Data_Structures
             myList.AddLast(7);
             myList.AddLast(8);
 
+            SinglyLinkedList<string> myList2 = new SinglyLinkedList<string>();
+            myList2.AddFirst(" day");
+            myList2.AddFirst(" every");
+            myList2.AddFirst("Code");
+
             myList.PrintLinkedList();
+            Console.WriteLine();
+            myList2.PrintLinkedList();
+            Console.WriteLine();
+            myList.Remove(3);
+            myList.Remove(5);
+            myList.Remove(8);
+            myList.PrintLinkedList();
+
+
             Console.ReadLine();
         }
     }
